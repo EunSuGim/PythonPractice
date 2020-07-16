@@ -1,0 +1,48 @@
+#문제 1
+#1-1000중 3과 5의 배수의 합
+
+result =0
+
+for tmp in range(1,1000) :
+    if tmp % 3 ==0 :
+        result += tmp
+    elif tmp % 5 == 0 :
+        result += tmp
+print(result)
+
+print("-----")
+
+#문제 2
+#피보나치 수열중 400만이하 짝수들의 합
+pivo = list()
+sum = 0
+for tmp in range(40) :
+    if tmp < 2 :
+        pivo.append(tmp)
+    else :
+        if pivo[tmp-1] <= 4000000 :
+            if pivo[tmp-1] % 2 == 0 :
+                sum += pivo[tmp-1]
+        pivo.append(pivo[tmp-2] + pivo[tmp-1])
+
+print(sum)
+print("-----")
+
+
+#문제 3
+#특정 문자열에서 가장 많이 사용한 알파벳과 그 개수(중복일 경우 오른차순으로 정렬)
+str1 = "This is a sample Program mississippi river"
+str2 = "abcdabcdababccddcd"
+str3 = str1.lower()
+
+str_count = {}
+
+for tmp in str3 :
+    if tmp in str_count :
+        str_count[tmp] += 1
+    else :
+        str_count[tmp] = 1
+
+max_str = [tmp for tmp in str_count if str_count[tmp] == max(str_count.values())]
+
+print("가장 많이 사용된 알파벳은 {} 이고, 개수는 {}개입니다.".format(sorted(max_str),max(str_count.values())))
