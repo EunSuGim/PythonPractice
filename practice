@@ -1,0 +1,59 @@
+#각 사람에 관한 데이터를 읽어서 성적순으로 출력
+
+class Student(object) :
+    def __init__(self,name,kor,math,eng):
+        self.__name = name
+        self.__kor = int(kor)
+        self.__math = int(math)
+        self.__eng = int(eng)
+        self.__grade = 0
+
+        self.__avgValue = self.__avg(self.__kor, self.__math, self.__eng)
+        self.avg = self.__avgValue
+
+    def __avg(self, kor, math, eng):
+        avg = (kor + math + eng) / 3.0
+        return round(avg,1)
+
+    def getAvg(self):
+        return self.__avgValue
+
+    def getName(self):
+        return self.__name
+
+    def setGrade(self,grade):
+        self.__grade = grade
+
+
+    def show(self):
+        print("이름 : {} 국어 : {} 수학 : {} 영어 : {} 평균 : {}".format(self.__name,self.__kor,self.__math,
+                                                                       self.__eng,self.__avgValue))
+
+
+file1 = open("C:/test/student_score.txt","r")
+student_list = list()
+for i in file1 :
+
+    # test.append(i.rstrip())
+    name, kor, math, eng = i.rstrip().split(",")
+    student_list.append(Student(name, kor, math, eng))
+file1.close()
+
+result = sorted(student_list,key=lambda stu : stu.avg,reverse=True)
+
+#
+# for i in student_list :
+#     count = 1
+#     for j in student_list :
+#         a = i.getAvg()
+#         b = j.getAvg()
+#         if a < b :
+#             count += 1
+#     i.setGrade(count)
+#
+# for i in student_list :
+#     i.show()
+
+for i in result:
+    i.show()
+
