@@ -1,3 +1,2 @@
 Python Practice Repository
-
-test -home
+python algorithm -home
